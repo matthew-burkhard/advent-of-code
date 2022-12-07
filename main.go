@@ -13,7 +13,6 @@ type Puzzle struct {
 	Solution  func() (interface{}, interface{}, error)
 	AnswerOne interface{}
 	AnswerTwo interface{}
-	Debug     bool
 }
 
 func (p Puzzle) Solve() bool {
@@ -84,6 +83,16 @@ func main() {
 			Solution:  solutions.Day_6,
 			AnswerOne: 1262,
 			AnswerTwo: 3444,
+		},
+		7: {
+			Solution:  solutions.Day_7,
+			AnswerOne: int32(1297683),
+			AnswerTwo: int32(5756764),
+		},
+		8: {
+			Solution:  solutions.Day_8,
+			AnswerOne: nil,
+			AnswerTwo: nil,
 		},
 	}
 
