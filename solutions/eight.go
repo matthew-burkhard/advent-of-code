@@ -176,8 +176,7 @@ func Day_8() (interface{}, interface{}, error) {
 	if err != nil {
 		return nil, nil, err
 	}
-	i.Println()
-	fmt.Println()
+	//i.Println()
 
 	lines := i.Slices()
 	rows := len(lines)

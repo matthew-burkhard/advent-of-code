@@ -94,6 +94,11 @@ func main() {
 			AnswerOne: 1776,
 			AnswerTwo: 234416,
 		},
+		9: {
+			Solution:  solutions.Day_9,
+			AnswerOne: 0,
+			AnswerTwo: 0,
+		},
 	}
 
 	allPassed := true
