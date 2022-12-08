@@ -91,8 +91,8 @@ func main() {
 		},
 		8: {
 			Solution:  solutions.Day_8,
-			AnswerOne: nil,
-			AnswerTwo: nil,
+			AnswerOne: 1776,
+			AnswerTwo: 234416,
 		},
 	}
 

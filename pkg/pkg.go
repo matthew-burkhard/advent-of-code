@@ -112,3 +112,15 @@ func (i Input) FirstLine() string {
 func (i Input) Slices() []string {
 	return i.rawSliced
 }
+
+func (i Input) Println() {
+	for i, l := range i.Slices() {
+		idx := fmt.Sprintf("%d", i)
+		if i < 10 {
+			idx = "00" + idx
+		} else if i < 100 {
+			idx = "0" + idx
+		}
+		fmt.Printf("[%s] %s\n", idx, l)
+	}
+}
