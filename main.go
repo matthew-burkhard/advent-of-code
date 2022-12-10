@@ -6,6 +6,9 @@ import (
 	"time"
 )
 
+const forceDay = 9
+const justToday = false
+
 type PuzzleResponse interface {
 }
 
@@ -48,8 +51,6 @@ func (p Puzzle) Solve() bool {
 	return pass
 
 }
-
-const justToday = false
 
 func main() {
 
@@ -96,8 +97,8 @@ func main() {
 		},
 		9: {
 			Solution:  solutions.Day_9,
-			AnswerOne: 0,
-			AnswerTwo: 0,
+			AnswerOne: 6337,
+			AnswerTwo: "?",
 		},
 	}
 
@@ -106,6 +107,8 @@ func main() {
 	start_day := 1
 	if justToday {
 		start_day = current_day
+	} else if forceDay != 0 {
+		start_day = forceDay
 	}
 	for i := start_day; i <= current_day; i++ {
 		day, found := codeDay[i]
