@@ -157,6 +157,8 @@ func (e *end) move(direction string) end {
 
 func (e *end) follow(before end, new end) end {
 
+	previous := *e
+
 	xDif := int(math.Abs(float64(new.x - e.x)))
 	yDif := int(math.Abs(float64(new.y - e.y)))
 	noMove := xDif == 0 && yDif == 0
@@ -170,7 +172,7 @@ func (e *end) follow(before end, new end) end {
 		e.y = before.y
 	}
 
-	return *e
+	return previous
 
 }
 
@@ -225,7 +227,6 @@ func Day_9() (interface{}, interface{}, error) {
 
 	long_rope := rope{}
 	long_rope.init(10)
-	//long_rope.debug = true
 
 	// fmt.Println("Starting!")
 	// long_rope.print_grid()
@@ -233,15 +234,13 @@ func Day_9() (interface{}, interface{}, error) {
 	// Swap these to enable your testing script!
 	moves := i.Slices()
 	//moves := fake_moves()
+	for i, l := range moves {
 
-	for _, l := range moves {
-
-		// if i == 0 {
-		// 	long_rope.debug = true
-		// } else if i == 50 {
-		// 	long_rope.debug = false
-		// 	break
-		// }
+		if i == 10 {
+			long_rope.debug = true
+		} else if i == 16 {
+			long_rope.debug = false
+		}
 
 		parts := strings.Split(l, " ")
 		direction := parts[0]
