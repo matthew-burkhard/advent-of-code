@@ -6,8 +6,7 @@ import (
 	"time"
 )
 
-const forceDay = 9
-const justToday = false
+const forceDay = 11
 
 type PuzzleResponse interface {
 }
@@ -95,19 +94,22 @@ func main() {
 			AnswerOne: 1776,
 			AnswerTwo: 234416,
 		},
-		9: {
-			Solution:  solutions.Day_9,
-			AnswerOne: 6337,
-			AnswerTwo: "?",
+		// 9: {
+		// 	Solution:  solutions.Day_9,
+		// 	AnswerOne: 6337,
+		// 	AnswerTwo: "?",
+		// },
+		10: {
+			Solution:  solutions.Day_10,
+			AnswerOne: 13680,
+			AnswerTwo: "PZGPKPEB",
 		},
 	}
 
 	allPassed := true
 	current_day := time.Now().Day()
 	start_day := 1
-	if justToday {
-		start_day = current_day
-	} else if forceDay != 0 {
+	if forceDay != 0 {
 		start_day = forceDay
 	}
 	for i := start_day; i <= current_day; i++ {

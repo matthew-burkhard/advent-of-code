@@ -59,14 +59,13 @@ func (r *rope) move(direction string, count string) {
 		// each knot needs to follow the one in front of it
 		knotAhead := r.knots[0]
 
-		// start at index 1 to skip head knot
-		for i := 1; i <= r.lastKnotIndex(); i++ {
+		// make the next knot follow the one in front
+		fm := r.knots[1].follow(previous, knotAhead)
 
-			// make the next knot follow the one in front
-			previous = r.knots[i].follow(previous, knotAhead)
+		// start at index 2 to skip head and 1st knot
+		for i := 2; i <= r.lastKnotIndex(); i++ {
 
-			// mark the current knot as the knot ahead for next iteration
-			knotAhead = r.knots[i]
+			r.knots[i].follow_move(fm)
 
 			if i == r.lastKnotIndex() {
 				// record tail unique position
@@ -155,9 +154,14 @@ func (e *end) move(direction string) end {
 	return before
 }
 
-func (e *end) follow(before end, new end) end {
+type follow_move struct {
+	x int
+	y int
+}
 
-	previous := *e
+func (e *end) follow(before end, new end) follow_move {
+
+	fm := follow_move{}
 
 	xDif := int(math.Abs(float64(new.x - e.x)))
 	yDif := int(math.Abs(float64(new.y - e.y)))
@@ -166,14 +170,20 @@ func (e *end) follow(before end, new end) end {
 
 	if noMove || withinOne {
 		// moved to the same spot, or within one, as the tail, nothing to do!
-		return *e
+		return fm
 	} else {
+		fm.x = before.x - e.x
+		fm.y = before.y - e.y
 		e.x = before.x
 		e.y = before.y
 	}
 
-	return previous
+	return fm
+}
 
+func (e *end) follow_move(fm follow_move) {
+	e.x += fm.x
+	e.y += fm.y
 }
 
 func (e end) toString() string {
